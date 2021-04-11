@@ -3,6 +3,8 @@ package com.education.analytics.model.domain;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.util.Objects;
+
 public class CourseLog {
 
     private final String time;
@@ -37,5 +39,21 @@ public class CourseLog {
 
     public String getDescription() {
         return description;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        CourseLog courseLog = (CourseLog) o;
+        return Objects.equals(time, courseLog.time) &&
+                Objects.equals(eventContext, courseLog.eventContext) &&
+                Objects.equals(component, courseLog.component) &&
+                Objects.equals(description, courseLog.description);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(time, eventContext, component, description);
     }
 }
