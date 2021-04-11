@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface IStudentResultService {
 
-    StudentResult get(String id) throws StudentResultNotFoundException;
+    StudentResult getOne(String id) throws StudentResultNotFoundException;
 
     List<StudentResult> getAll();
 }

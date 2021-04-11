@@ -16,7 +16,7 @@ public class StudentResultService implements IStudentResultService {
     }
 
     @Override
-    public StudentResult get(String id) {
+    public StudentResult getOne(String id) {
         for (StudentResult studentResult : studentResultRepository.get()) {
             if (studentResult.getId().equals(id)) {
                 return studentResult;
