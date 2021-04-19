@@ -25,18 +25,22 @@ public class CourseLog {
         this.description = description;
     }
 
+    @JsonProperty("time")
     public String getTime() {
         return time;
     }
 
+    @JsonProperty("eventContext")
     public String getEventContext() {
         return eventContext;
     }
 
+    @JsonProperty("component")
     public String getComponent() {
         return component;
     }
 
+    @JsonProperty("description")
     public String getDescription() {
         return description;
     }
