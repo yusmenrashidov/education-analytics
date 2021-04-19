@@ -8,6 +8,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import static java.util.stream.Collectors.*;
 
@@ -34,6 +35,8 @@ public class StudentResultExcelExtractor implements IStudentResultRepository {
             FileInputStream excelFile = new FileInputStream(new File(dataSourcePath));
             XSSFWorkbook workbook = new XSSFWorkbook(excelFile);
 
+            int d = workbook.getSheetAt(0).getLastRowNum();
+
             for (int i = 1; i < workbook.getSheetAt(0).getPhysicalNumberOfRows(); i++) {
                 rows.add(workbook.getSheetAt(0).getRow(i));
             }
@@ -46,8 +49,8 @@ public class StudentResultExcelExtractor implements IStudentResultRepository {
 
     private StudentResult rowToStudentResult(XSSFRow row) {
         return new StudentResult(
-                row.getCell(0).getStringCellValue(),
-                (int) row.getCell(1).getNumericCellValue()
+                Objects.isNull(row.getCell(0).getNumericCellValue()) ? null : row.getCell(0).getNumericCellValue(),
+                Objects.isNull(row.getCell(1).getNumericCellValue()) ? null : row.getCell(1).getNumericCellValue()
                 );
     }
 }

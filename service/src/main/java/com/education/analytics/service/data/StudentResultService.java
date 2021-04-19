@@ -30,6 +30,7 @@ public class StudentResultService implements IStudentResultService {
         try {
             return studentResultRepository.get();
         } catch (Exception e) {
+            e.printStackTrace();
             throw new StudentResultServiceException();
         }
     }
