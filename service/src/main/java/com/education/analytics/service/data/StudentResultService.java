@@ -93,7 +93,7 @@ public class StudentResultService implements IStudentResultService {
        return studentResultRepository.get()
                .stream()
                .filter(studentResult -> grade.compareTo(studentResult.getResult().intValue()) == 0)
-               .map(studentResult -> studentResult.getResult())
+               .map(studentResult -> studentResult.getResult().intValue())
                .collect(Collectors.toList());
    }
 }
