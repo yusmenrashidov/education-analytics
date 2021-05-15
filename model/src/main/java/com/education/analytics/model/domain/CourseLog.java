@@ -9,6 +9,7 @@ public class CourseLog {
 
     private final String time;
     private final String eventContext;
+    private final String eventName;
     private final String component;
     private final String description;
 
@@ -17,10 +18,12 @@ public class CourseLog {
                       @JsonProperty("time") String time, //
                       @JsonProperty("eventContext") String eventContext, //
                       @JsonProperty("component") String component, //
+                      @JsonProperty("eventName") String eventName, //
                       @JsonProperty("description") String description //
     ) {
         this.time = time;
         this.eventContext = eventContext;
+        this.eventName = eventName;
         this.component = component;
         this.description = description;
     }
@@ -33,6 +36,15 @@ public class CourseLog {
         return eventContext;
     }
 
+<<<<<<< Updated upstream
+=======
+    @JsonProperty("eventName")
+    public String getEventName () {
+        return  eventName;
+    }
+
+    @JsonProperty("component")
+>>>>>>> Stashed changes
     public String getComponent() {
         return component;
     }
@@ -48,12 +60,13 @@ public class CourseLog {
         CourseLog courseLog = (CourseLog) o;
         return Objects.equals(time, courseLog.time) &&
                 Objects.equals(eventContext, courseLog.eventContext) &&
+                Objects.equals(eventName, courseLog.eventName) &&
                 Objects.equals(component, courseLog.component) &&
                 Objects.equals(description, courseLog.description);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(time, eventContext, component, description);
+        return Objects.hash(time, eventContext, component, description, eventName);
     }
 }

@@ -50,7 +50,8 @@ public class CourseLogExcelExtractor implements ICourseLogRepository {
                 row.getCell(0).getStringCellValue(),
                 row.getCell(1).getStringCellValue(),
                 row.getCell(2).getStringCellValue(),
-                row.getCell(3).getStringCellValue()
+                row.getCell(3).getStringCellValue(),
+                row.getCell(4).getStringCellValue()
         );
     }
 }

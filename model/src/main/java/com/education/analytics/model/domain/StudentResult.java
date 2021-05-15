@@ -8,12 +8,12 @@ import java.util.Objects;
 public class StudentResult {
 
     private final String id;
-    private final int result;
+    private final Integer result;
 
     @JsonCreator
     public StudentResult( //
        @JsonProperty("id") String id, //
-       @JsonProperty("result") int result //
+       @JsonProperty("result") Integer result //
     ) {
         this.id = id;
         this.result = result;
@@ -26,7 +26,7 @@ public class StudentResult {
     }
 
     @JsonProperty("id")
-    public int getResult() {
+    public Integer getResult() {
         return result;
     }
 
