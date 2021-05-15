@@ -28,14 +28,17 @@ public class CourseLog {
         this.description = description;
     }
 
+    @JsonProperty("time")
     public String getTime() {
         return time;
     }
 
+    @JsonProperty("eventContext")
     public String getEventContext() {
         return eventContext;
     }
 
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 =======
     @JsonProperty("eventName")
@@ -45,10 +48,14 @@ public class CourseLog {
 
     @JsonProperty("component")
 >>>>>>> Stashed changes
+=======
+    @JsonProperty("component")
+>>>>>>> de4553e6d88be3e3ad6fdf70cf6201150eb11cb6
     public String getComponent() {
         return component;
     }
 
+    @JsonProperty("description")
     public String getDescription() {
         return description;
     }

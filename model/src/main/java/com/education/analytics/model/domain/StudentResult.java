@@ -7,13 +7,13 @@ import java.util.Objects;
 
 public class StudentResult {
 
-    private final String id;
-    private final Integer result;
+    private final Double id;
+    private final Double result;
 
     @JsonCreator
     public StudentResult( //
-       @JsonProperty("id") String id, //
-       @JsonProperty("result") Integer result //
+       @JsonProperty("id") Double id, //
+       @JsonProperty("result") Double result //
     ) {
         this.id = id;
         this.result = result;
@@ -21,12 +21,12 @@ public class StudentResult {
 
 
     @JsonProperty("id")
-    public String getId() {
+    public Double getId() {
         return id;
     }
 
-    @JsonProperty("id")
-    public Integer getResult() {
+    @JsonProperty("result")
+    public Double getResult() {
         return result;
     }
 
