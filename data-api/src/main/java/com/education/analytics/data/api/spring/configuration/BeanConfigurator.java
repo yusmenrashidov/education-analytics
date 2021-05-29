@@ -1,5 +1,9 @@
 package com.education.analytics.data.api.spring.configuration;
 
+import com.education.analytics.service.analytics.IActivitiesAnalyticsManager;
+import com.education.analytics.service.analytics.IStudentResultAnalyticsManager;
+import com.education.analytics.service.analytics.StudentActivitiesAnalyticsManager;
+import com.education.analytics.service.analytics.StudentResultAnalyticsManager;
 import com.education.analytics.service.data.StudentActivitiesService;
 import com.education.analytics.service.data.IStudentActivitiesService;
 import com.education.analytics.service.data.IStudentResultService;
@@ -8,8 +12,6 @@ import com.education.analytics.service.repository.CourseLogExcelExtractor;
 import com.education.analytics.service.repository.ICourseLogRepository;
 import com.education.analytics.service.repository.IStudentResultRepository;
 import com.education.analytics.service.repository.StudentResultExcelExtractor;
-import org.omg.CORBA.DATA_CONVERSION;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -38,5 +40,15 @@ public class BeanConfigurator {
     @Bean
     public IStudentResultService studentResultService(IStudentResultRepository studentResultRepository) {
         return new StudentResultService(studentResultRepository);
+    }
+
+    @Bean
+    public IStudentResultAnalyticsManager studentResultAnalyticsManager(IStudentResultService studentResultService, IStudentActivitiesService studentActivitiesService) {
+        return new StudentResultAnalyticsManager(studentResultService, studentActivitiesService);
+    }
+
+    @Bean
+    IActivitiesAnalyticsManager activitiesAnalyticsManager(IStudentActivitiesService studentActivitiesService){
+        return new StudentActivitiesAnalyticsManager(studentActivitiesService);
     }
 }

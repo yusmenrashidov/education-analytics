@@ -1,10 +1,10 @@
 package com.education.analytics.service.repository;
 
-import com.education.analytics.model.domain.CourseLog;
+import com.education.analytics.model.domain.Activity;
 
 import java.util.List;
 
 public interface ICourseLogRepository {
 
-    List<CourseLog> get();
+    List<Activity> get();
 }

@@ -1,8 +1,7 @@
 package com.education.analytics.service.repository;
 
-import com.education.analytics.model.domain.CourseLog;
+import com.education.analytics.model.domain.Activity;
 import org.apache.poi.xssf.usermodel.XSSFRow;
-import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import java.io.File;
@@ -21,7 +20,7 @@ public class CourseLogExcelExtractor implements ICourseLogRepository {
     }
 
     @Override
-    public List<CourseLog> get() {
+    public List<Activity> get() {
         return getDataSheetRows() //
                 .stream() //
                 .map(this::rowToCourseLog)
@@ -45,8 +44,8 @@ public class CourseLogExcelExtractor implements ICourseLogRepository {
         }
     }
 
-    private CourseLog rowToCourseLog(XSSFRow row) {
-        return new CourseLog(//
+    private Activity rowToCourseLog(XSSFRow row) {
+        return new Activity(//
                 row.getCell(0).getStringCellValue(),
                 row.getCell(1).getStringCellValue(),
                 row.getCell(2).getStringCellValue(),

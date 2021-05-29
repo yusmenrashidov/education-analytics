@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.Objects;
 
-public class CourseLog {
+public class Activity {
 
     private final String time;
     private final String eventContext;
@@ -14,12 +14,12 @@ public class CourseLog {
     private final String description;
 
     @JsonCreator
-    public CourseLog( //
-                      @JsonProperty("time") String time, //
-                      @JsonProperty("eventContext") String eventContext, //
-                      @JsonProperty("component") String component, //
-                      @JsonProperty("eventName") String eventName, //
-                      @JsonProperty("description") String description //
+    public Activity( //
+                     @JsonProperty("time") String time, //
+                     @JsonProperty("eventContext") String eventContext, //
+                     @JsonProperty("component") String component, //
+                     @JsonProperty("eventName") String eventName, //
+                     @JsonProperty("description") String description //
     ) {
         this.time = time;
         this.eventContext = eventContext;
@@ -38,19 +38,12 @@ public class CourseLog {
         return eventContext;
     }
 
-<<<<<<< HEAD
-<<<<<<< Updated upstream
-=======
     @JsonProperty("eventName")
     public String getEventName () {
         return  eventName;
     }
 
     @JsonProperty("component")
->>>>>>> Stashed changes
-=======
-    @JsonProperty("component")
->>>>>>> de4553e6d88be3e3ad6fdf70cf6201150eb11cb6
     public String getComponent() {
         return component;
     }
@@ -64,12 +57,12 @@ public class CourseLog {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        CourseLog courseLog = (CourseLog) o;
-        return Objects.equals(time, courseLog.time) &&
-                Objects.equals(eventContext, courseLog.eventContext) &&
-                Objects.equals(eventName, courseLog.eventName) &&
-                Objects.equals(component, courseLog.component) &&
-                Objects.equals(description, courseLog.description);
+        Activity activity = (Activity) o;
+        return Objects.equals(time, activity.time) &&
+                Objects.equals(eventContext, activity.eventContext) &&
+                Objects.equals(eventName, activity.eventName) &&
+                Objects.equals(component, activity.component) &&
+                Objects.equals(description, activity.description);
     }
 
     @Override

@@ -21,16 +21,6 @@ public class StudentResultService implements IStudentResultService {
     }
 
     @Override
-    public StudentResult getOne(String id) {
-        for (StudentResult studentResult : studentResultRepository.get()) {
-            if (id.equals(studentResult.getId())) {
-                return studentResult;
-            }
-        }
-        throw new StudentResultNotFoundException();
-    }
-
-    @Override
     public List<StudentResult> getAll() {
         try {
             return studentResultRepository.get();
@@ -41,17 +31,11 @@ public class StudentResultService implements IStudentResultService {
     }
 
     @Override
-    public List<StudentResult> getAllById(String id) {
-        try {
-            return studentResultRepository.get()
-                    .stream()
-                        .filter(studentResult -> StringUtils.equals(String.valueOf(studentResult.getId()), id))
-                    .collect(Collectors.toList());
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            throw new StudentResultServiceException();
-        }
+    public List<StudentResult> getResultsByGrade(int grade) {
+        return studentResultRepository.get()
+                .stream()
+                .filter(studentResult -> studentResult.getResult().intValue() == grade)
+                .collect(Collectors.toList());
     }
 
     @Override

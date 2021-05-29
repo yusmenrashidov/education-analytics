@@ -1,14 +1,13 @@
 package com.education.analytics.data.api.spring.controller;
 
-import com.education.analytics.model.domain.CourseLog;
-import com.education.analytics.service.data.IStudentActivitiesService;
+import com.education.analytics.model.domain.Activity;
+import com.education.analytics.service.analytics.IActivitiesAnalyticsManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Collection;
+import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import static org.springframework.http.MediaType.*;
 import static org.springframework.http.ResponseEntity.*;
@@ -16,20 +15,11 @@ import static org.springframework.http.ResponseEntity.*;
 @RestController
 public class StudentActivitiesApiController {
 
-    private final IStudentActivitiesService courseLogService;
+    private final IActivitiesAnalyticsManager activitiesAnalyticsManager;
 
     @Autowired
-    public StudentActivitiesApiController(IStudentActivitiesService courseLogService) {
-        this.courseLogService = courseLogService;
-    }
-
-    @ResponseBody
-    @GetMapping( //
-            path = "/data/api/v1/student-activities/component", //
-            produces = APPLICATION_JSON_VALUE //
-    )
-    public ResponseEntity<Collection<CourseLog>> get(@RequestParam(required = true, name ="component") String component) {
-        return ok().body(courseLogService.getAllByComponent(component));
+    public StudentActivitiesApiController(IActivitiesAnalyticsManager activitiesAnalyticsManager) {
+        this.activitiesAnalyticsManager = activitiesAnalyticsManager;
     }
 
     @ResponseBody
@@ -38,15 +28,28 @@ public class StudentActivitiesApiController {
             produces = APPLICATION_JSON_VALUE //
     )
     public ResponseEntity<Map<String, Integer>> getAllViewedLectures() {
-        return ok().body(courseLogService.getAllViewedLectures());
+        return ok().body(activitiesAnalyticsManager.getAllViewedLectures());
     }
 
     @ResponseBody
     @GetMapping( //
-            path = "/data/api/v1/student-activities/test", //
+            path = "/data/api/v1/student-activities/viewed-lectures/date", //
             produces = APPLICATION_JSON_VALUE //
     )
-    public ResponseEntity<Set<String>> get() {
-        return ok().body(courseLogService.get());
+    public ResponseEntity<Map<String, Integer>> getAllViewedLecturesByDate( //
+            @RequestParam(name = "startDate", required = true) String startDate, //
+            @RequestParam(name = "endDate", required = true) String endDate //
+    ) {
+        return ok().body(activitiesAnalyticsManager.getViewedLecturesInTimeFrame(startDate, endDate));
     }
+
+    @ResponseBody
+    @GetMapping( //
+            path = "/data/api/v1/student-activities/wiki", //
+            produces = APPLICATION_JSON_VALUE //
+    )
+    public ResponseEntity<Map<Integer, Integer>> getAllViewedLecturesByDate() {
+        return ok().body(activitiesAnalyticsManager.getViewedWikies());
+    }
+
 }

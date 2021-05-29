@@ -8,13 +8,11 @@ import java.util.Map;
 
 public interface IStudentResultService {
 
-    StudentResult getOne(String id) throws StudentResultNotFoundException;
-
     List<StudentResult> getAll();
-
-    List<StudentResult> getAllById(String id);
 
     Map<Double, Integer> getGradesResult();
 
     Map<String , Double> getAverageGrade();
+
+    List<StudentResult> getResultsByGrade(int grade);
 }

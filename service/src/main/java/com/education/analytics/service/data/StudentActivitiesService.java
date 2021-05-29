@@ -1,6 +1,6 @@
 package com.education.analytics.service.data;
 
-import com.education.analytics.model.domain.CourseLog;
+import com.education.analytics.model.domain.Activity;
 import com.education.analytics.model.exception.CourseLogServiceException;
 import com.education.analytics.service.repository.ICourseLogRepository;
 
@@ -19,7 +19,7 @@ public class StudentActivitiesService implements IStudentActivitiesService {
     }
 
     @Override
-    public List<CourseLog> getAll() {
+    public List<Activity> getAll() {
         try {
             return courseLogRepository.get();
         } catch (Exception e) {
@@ -28,7 +28,7 @@ public class StudentActivitiesService implements IStudentActivitiesService {
     }
 
     @Override
-    public List<CourseLog> getAllByComponent(String component) {
+    public List<Activity> getAllByComponent(String component) {
         return courseLogRepository.get()
                 .stream()
                 .filter(courseLog -> courseLog.getComponent().equals(component))
@@ -37,16 +37,11 @@ public class StudentActivitiesService implements IStudentActivitiesService {
     }
 
     @Override
-    public Map<String, Integer> getAllViewedLectures() {
-        int viewedCourses = (int) courseLogRepository.get()
+    public List<Activity> getAllViewedLectures() {
+        return courseLogRepository.get()
                 .stream()
                 .filter(courseLog -> courseLog.getEventContext().startsWith("File: Лекция"))
-                .count();
-
-        Map<String, Integer> result =  new HashMap<>();
-        result.put("Lectures viewed", viewedCourses);
-
-        return result;
+                .collect(Collectors.toList());
     }
 
     @Override
